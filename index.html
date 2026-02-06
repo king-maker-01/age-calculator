@@ -2,9 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Smart Age Calculator | Exams & Jobs</title>
+
+<title>Age Calculator Online | Exam Age Eligibility Checker by DOB</title>
+<link rel="icon" type="image/jpeg" href="Calculator_Logo.jpg">
+
+
+<meta name="description" content="Free online age calculator to calculate exact age in years, months and days. Check exam age eligibility for government jobs, entrance exams and recruitment easily.">
+
+<meta name="keywords" content="age calculator, online age calculator, exam age eligibility checker, calculate age by date of birth, government exam age limit, dob age calculator">
 
 <style>
+
 *{box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif;}
 
 body{
@@ -286,7 +294,8 @@ home / other / age calculator
 <div class="main">
 
 <div class="card">
-<h2>Age Calculator</h2>
+<h2>Online Age Calculator & Exam Eligibility Checker</h2>
+
 
 <label>Date of Birth</label>
 <input type="date" id="dob">
@@ -382,10 +391,16 @@ Manual age calculation is time-consuming and error-prone. This tool provides fas
 
 <script>
 
-// AUTO SET TODAY
-window.onload = function(){
-document.getElementById("ageOn").value = new Date().toISOString().split("T")[0];
+window.onload = function () {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+
+  document.getElementById("ageOn").value = `${yyyy}-${mm}-${dd}`;
 };
+
+
 
 // EXAM AGE LIMIT DATABASE
 const limits = {
