@@ -1,269 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
 
-<title>Age Calculator Online | Exam Age Eligibility Checker by DOB</title>
-<link rel="icon" type="image/jpeg" href="Calculator_Logo.jpg">
+  <!-- Page Title -->
+  <title>Age Calculator Online | Exam & Job Age Eligibility Checker by DOB</title>
 
+  <!-- Meta Description -->
+  <meta name="description" content="Free online age calculator to calculate exact age in years, months and days. Check exam and government job age eligibility instantly using date of birth. Ideal for students, job seekers, and competitive exams.">
 
-<meta name="description" content="Free online age calculator to calculate exact age in years, months and days. Check exam age eligibility for government jobs, entrance exams and recruitment easily.">
+  <!-- Meta Keywords -->
+  <meta name="keywords" content="age calculator, age calculator online, exact age calculator, calculate age by date of birth, dob age calculator, age calculator in years months days, exam age calculator, age eligibility checker, exam age eligibility, government job age calculator, job age eligibility calculator, UPSC age calculator, SSC age eligibility, bank exam age calculator, railway age eligibility, police bharti age calculator, defence exam age limit, MPSC age eligibility, age at specific date, calculate age on particular date, date of birth calculator, how old am i, what is my exact age, check exam eligibility by dob">
 
-<meta name="keywords" content="age calculator, online age calculator, exam age eligibility checker, calculate age by date of birth, government exam age limit, dob age calculator">
+  <!-- Mobile Friendly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Author -->
+  <meta name="author" content="Smart Age Calculator">
+
+  <!-- Search Engine -->
+  <meta name="robots" content="index, follow">
+
+  <!-- Favicon -->
+  <link rel="icon" href="Calculator_Logo.jpg" type="image/jpeg">
 
 <style>
 
-*{box-sizing:border-box;font-family:Segoe UI,Arial,sans-serif;}
+*{
+  box-sizing:border-box;
+  font-family:Segoe UI,Arial,sans-serif;
+}
 
 body{
-margin:0;
-min-height:100vh;
-background: linear-gradient(
-  to bottom,
-  #ffffff 0%,
-  #eef4ff 25%,
-  #dbe9ff 50%,
-  #b9d3f5 75%,
-  #8fb6e8 100%
-);
+  margin:0;
+  min-height:100vh;
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    #eef4ff 25%,
+    #dbe9ff 50%,
+    #b9d3f5 75%,
+    #8fb6e8 100%
+  );
 }
 
-header{
-background:linear-gradient(90deg,#0b3c5d,#145c8e);
-color:white;
-padding:18px 30px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+.main-header{
+  background:linear-gradient(90deg,#083a5c,#0f5f8f);
+  color:white;
+  padding:16px 60px;
+  display:flex;
+  align-items:center;
+  gap:40px;
+  box-shadow:0 4px 12px rgba(0,0,0,.2);
 }
 
-header h1{margin:0;font-size:24px;}
-header input{padding:8px 12px;width:240px;border-radius:6px;border:none;}
+.logo{
+  font-size:26px;
+  font-weight:700;
+  letter-spacing:.5px;
+}
+
+nav a{
+  color:white;
+  margin:0 16px;
+  text-decoration:none;
+  font-weight:600;
+  font-size:15px;
+  transition:.2s;
+}
+
+nav a:hover{
+  color:#9be02f;
+}
+
+nav a.active{
+  color:#9be02f;
+  border-bottom:2px solid #9be02f;
+  padding-bottom:4px;
+}
+
+.breadcrumb{
+  padding:10px 40px;
+  background:#f5f8ff;
+  color:#444;
+  font-size:14px;
+}
 
 .main{
-max-width:1100px;
-margin:40px auto;
-display:flex;
-gap:25px;
-padding:0 20px;
+  max-width:1100px;
+  margin:40px auto;
+  display:flex;
+  gap:25px;
+  padding:0 20px;
 }
 
 .card{
-background:white;
-padding:30px;
-border-radius:14px;
-box-shadow:0 12px 28px rgba(0,0,0,.12);
-width:380px;
+  background:white;
+  padding:30px;
+  border-radius:14px;
+  box-shadow:0 12px 28px rgba(0,0,0,.12);
+  width:380px;
 }
 
 .card h2{
-margin-top:0;
-border-bottom:2px solid #e6ecf5;
-padding-bottom:10px;
-color:#102a43;
+  margin-top:0;
+  border-bottom:2px solid #e6ecf5;
+  padding-bottom:10px;
+  color:#102a43;
 }
 
 label{
-font-weight:600;
-margin-top:16px;
-display:block;
-color:#334;
+  font-weight:600;
+  margin-top:16px;
+  display:block;
+  color:#334;
 }
 
 input{
-width:100%;
-padding:11px;
-margin-top:6px;
-border-radius:6px;
-border:1px solid #ccd6e6;
-font-size:15px;
+  width:100%;
+  padding:11px;
+  margin-top:6px;
+  border-radius:6px;
+  border:1px solid #ccd6e6;
+  font-size:15px;
 }
 
 button{
-margin-top:20px;
-width:100%;
-padding:13px;
-background:linear-gradient(90deg,#5ea51d,#3f7f11);
-color:white;
-border:none;
-border-radius:8px;
-font-size:17px;
-font-weight:bold;
-cursor:pointer;
+  margin-top:20px;
+  width:100%;
+  padding:13px;
+  background:linear-gradient(90deg,#5ea51d,#3f7f11);
+  color:white;
+  border:none;
+  border-radius:8px;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 #result{
-margin-top:18px;
-background:#f2f7ff;
-padding:14px;
-border-radius:8px;
-border:1px solid #d7e4ff;
-font-weight:600;
-line-height:1.7;
-color:#102a43;
+  margin-top:18px;
+  background:#f2f7ff;
+  padding:14px;
+  border-radius:8px;
+  border:1px solid #d7e4ff;
+  font-weight:600;
+  line-height:1.7;
+  color:#102a43;
 }
 
 .hint{
-font-size:13px;
-color:#666;
-margin-top:6px;
-display:block;
+  font-size:13px;
+  color:#666;
+  margin-top:6px;
+  display:block;
 }
 
 .content,.sidebar{
-background:white;
-padding:22px;
-border-radius:14px;
-box-shadow:0 12px 28px rgba(0,0,0,.1);
+  background:white;
+  padding:22px;
+  border-radius:14px;
+  box-shadow:0 12px 28px rgba(0,0,0,.1);
 }
 
 .content{flex:1;}
 .sidebar{width:220px;}
 
 @media(max-width:900px){
-.main{flex-direction:column;}
-.card,.sidebar{width:100%;}
+  .main{flex-direction:column;}
+  .card,.sidebar{width:100%;}
 }
-
-.main-header{
-background:linear-gradient(90deg,#083a5c,#0f5f8f);
-color:white;
-padding:16px 60px;
-display:flex;
-align-items:center;
-gap:40px;
-box-shadow:0 4px 12px rgba(0,0,0,.2);
-}
-
-.logo{
-font-size:26px;
-font-weight:700;
-letter-spacing:.5px;
-}
-
-nav a{
-color:white;
-margin:0 16px;
-text-decoration:none;
-font-weight:600;
-font-size:15px;
-transition:.2s;
-}
-
-nav a:hover{
-color:#9be02f;
-}
-
-nav a{
-color:white;
-margin:0 16px;
-text-decoration:none;
-font-weight:600;
-font-size:15px;
-transition:.2s;
-}
-
-nav a:hover{
-color:#9be02f;
-}
-
-
-.search{
-padding:8px 12px;
-border-radius:6px;
-border:none;
-width:200px;
-}
-
-.breadcrumb{
-padding:10px 40px;
-background:#f5f8ff;
-color:#444;
-font-size:14px;
-}
-
 
 .sidebar h4{
-background:#2f5f8f;
-color:white;
-padding:10px 12px;
-border-radius:6px;
-margin:-22px -22px 14px -22px;
+  background:#2f5f8f;
+  color:white;
+  padding:10px 12px;
+  border-radius:6px;
+  margin:-22px -22px 14px -22px;
 }
 
 .tool-links{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:8px 12px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px 12px;
 }
 
 .tool-links a{
-color:#2b7cff;
-text-decoration:none;
-font-weight:600;
-font-size:14px;
+  color:#2b7cff;
+  text-decoration:none;
+  font-weight:600;
+  font-size:14px;
 }
 
 .tool-links a:hover{
-text-decoration:underline;
+  text-decoration:underline;
 }
 
 .tool-links .more{
-grid-column:span 2;
-text-align:center;
-font-weight:bold;
-color:#083a5c;
+  grid-column:span 2;
+  text-align:center;
+  font-weight:bold;
+  color:#083a5c;
 }
-
-
-.side-links a{
-padding:4px 6px;
-border-radius:4px;
-font-weight:600;
-color:#2b7cff;
-text-decoration:none;
-}
-
-.side-links a:hover{
-background:#eaf1ff;
-color:#083a5c;
-}
-
-
 
 .site-footer{
-width:100%;
-background:#e6e6e6;
-padding:16px 10px;
-margin-top:60px;
+  width:100%;
+  background:#e6e6e6;
+  padding:16px 10px;
+  margin-top:60px;
 }
 
 .footer-wrap{
-text-align:center;
-font-size:14px;
-color:#333;
+  text-align:center;
+  font-size:14px;
+  color:#333;
 }
 
 .footer-links a{
-color:#083a5c;
-text-decoration:underline;
-font-weight:600;
-margin:0 6px;
-}
-
-.footer-links span{
-color:#555;
+  color:#083a5c;
+  text-decoration:underline;
+  font-weight:600;
+  margin:0 6px;
 }
 
 .footer-copy{
-margin-top:6px;
-font-weight:600;
+  margin-top:6px;
+  font-weight:600;
 }
-
-
-
-
-
 
 </style>
 </head>
@@ -271,31 +234,22 @@ font-weight:600;
 <body>
 
 <header class="main-header">
-
-<div class="logo">
-Smart Age Calculator
-</div>
-
-<nav>
-<a href="#">Age Calculator</a>
-<a href="#">Eligibility Checker</a>
-<a href="#">Entrance Exams</a>
-<a href="#">Govt Jobs</a>
-<a href="#" class="active">Calculator Hub</a>
-</nav>
-
+  <div class="logo">Smart Age Calculator</div>
+  <nav>
+    <a href="#" class="active">Age Calculator</a>
+    <a href="#">Eligibility Checker</a>
+    <a href="#">Entrance Exams</a>
+    <a href="#">Govt Jobs</a>
+    <a href="#">Calculator Hub</a>
+  </nav>
 </header>
 
-<div class="breadcrumb">
-home / other / age calculator
-</div>
-
+<div class="breadcrumb">home / other / age calculator</div>
 
 <div class="main">
 
 <div class="card">
 <h2>Online Age Calculator & Exam Eligibility Checker</h2>
-
 
 <label>Date of Birth</label>
 <input type="date" id="dob">
@@ -335,42 +289,16 @@ home / other / age calculator
 </datalist>
 
 <button onclick="calculateAge()">Calculate Age</button>
-
 <div id="result">Enter dates to calculate age</div>
 </div>
 
 <div class="content">
 <h3>About This Age Calculator</h3>
-
-<p>
-The Smart Age Calculator is an online tool designed to calculate your exact age in years, months, and days based on your date of birth.
-It also helps users check eligibility for various government exams, entrance tests, and job opportunities according to official age limits.
-</p>
-
-<h4>What This Tool Can Do</h4>
-<ul>
-<li>✔ Calculate precise age till the selected date</li>
-<li>✔ Automatically select the current date</li>
-<li>✔ Check exam-wise eligibility instantly</li>
-<li>✔ Show remaining time if not eligible yet</li>
-<li>✔ Prevent mistakes in form filling</li>
-</ul>
-
-<h4>Who Should Use This?</h4>
-<p>
-Students preparing for competitive exams, job seekers applying for government posts, and anyone who needs accurate age calculation for official documents.
-</p>
-
-<h4>Why Use This Calculator?</h4>
-<p>
-Manual age calculation is time-consuming and error-prone. This tool provides fast, reliable results in one click.
-</p>
+<p>The Smart Age Calculator helps calculate exact age and check exam or job eligibility based on DOB.</p>
 </div>
-
 
 <div class="sidebar">
 <h4>Other Calculators</h4>
-
 <div class="tool-links">
 <a href="#">Age Calculator</a>
 <a href="#">Date Difference</a>
@@ -386,24 +314,16 @@ Manual age calculation is time-consuming and error-prone. This tool provides fas
 <a href="#">Dice Roller</a>
 <a href="#" class="more">More Calculators →</a>
 </div>
-
 </div>
 
 <script>
+window.onload = function(){
+  const t=new Date();
+  document.getElementById("ageOn").value =
+  `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
+}
 
-window.onload = function () {
-  const today = new Date();
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth() + 1).padStart(2, '0');
-  const dd = String(today.getDate()).padStart(2, '0');
-
-  document.getElementById("ageOn").value = `${yyyy}-${mm}-${dd}`;
-};
-
-
-
-// EXAM AGE LIMIT DATABASE
-const limits = {
+const limits={
 "UPSC Civil Services":[21,32],
 "SSC CGL":[18,32],
 "SSC CHSL":[18,27],
@@ -431,103 +351,54 @@ const limits = {
 };
 
 function calculateAge(){
+  const dob=document.getElementById("dob").value;
+  const ageOn=document.getElementById("ageOn").value;
+  const exam=document.getElementById("exam").value;
+  const result=document.getElementById("result");
 
-let dob = document.getElementById("dob").value;
-let ageOn = document.getElementById("ageOn").value;
-let exam = document.getElementById("exam").value;
-let result = document.getElementById("result");
+  if(!dob||!ageOn){result.innerHTML="⚠ Please select both dates";return;}
 
-if(!dob || !ageOn){
-result.innerHTML = "⚠ Please select both dates";
-return;
-}
+  const b=new Date(dob),t=new Date(ageOn);
+  let y=t.getFullYear()-b.getFullYear(),
+      m=t.getMonth()-b.getMonth(),
+      d=t.getDate()-b.getDate();
 
-let birth = new Date(dob);
-let target = new Date(ageOn);
+  if(d<0){m--;d+=new Date(t.getFullYear(),t.getMonth(),0).getDate();}
+  if(m<0){y--;m+=12;}
 
-// Exact age
-let years = target.getFullYear() - birth.getFullYear();
-let months = target.getMonth() - birth.getMonth();
-let days = target.getDate() - birth.getDate();
+  let eligibility="";
+  if(limits[exam]){
+    const[min,max]=limits[exam];
+    const minDOB=new Date(t);minDOB.setFullYear(t.getFullYear()-max);
+    const maxDOB=new Date(t);maxDOB.setFullYear(t.getFullYear()-min);
 
-if(days < 0){
-months--;
-days += new Date(target.getFullYear(), target.getMonth(), 0).getDate();
-}
-if(months < 0){
-years--;
-months += 12;
-}
+    if(b>=minDOB&&b<=maxDOB) eligibility=`✅ Eligible for ${exam} (Age limit: ${min}-${max})`;
+    else if(b>maxDOB){
+      const e=new Date(b);e.setFullYear(b.getFullYear()+min);
+      eligibility=`⏳ Not Eligible Yet<br>Eligible on: <b>${e.toLocaleDateString("en-GB").replace(/\//g,"-")}</b>`;
+    }else{
+      const l=new Date(b);l.setFullYear(b.getFullYear()+max);
+      eligibility=`❌ Over Age<br>Last eligible date: <b>${l.toLocaleDateString("en-GB").replace(/\//g,"-")}</b>`;
+    }
+  }
 
-let eligibility = "";
-
-if(limits[exam]){
-
-let min = limits[exam][0];
-let max = limits[exam][1];
-
-let minDOB = new Date(target);
-minDOB.setFullYear(target.getFullYear() - max);
-
-let maxDOB = new Date(target);
-maxDOB.setFullYear(target.getFullYear() - min);
-
-if(birth >= minDOB && birth <= maxDOB){
-
-eligibility = `✅ Eligible for ${exam} (Age limit: ${min}-${max})`;
-
-} else if (birth > maxDOB){
-
-let eligibleOn = new Date(birth);
-eligibleOn.setFullYear(birth.getFullYear() + min);
-
-eligibility = `⏳ Not Eligible Yet<br>
-Eligible on: <b>${eligibleOn.toLocaleDateString("en-GB").replace(/\//g,"-")}</b>`;
-
-} else {
-
-let lastDate = new Date(birth);
-lastDate.setFullYear(birth.getFullYear() + max);
-
-eligibility = `❌ Over Age<br>
-Last eligible date: <b>${lastDate.toLocaleDateString("en-GB").replace(/\//g,"-")}</b>`;
-}
-}
-
-result.innerHTML = `
-<b>Exact Age:</b> ${years} Years ${months} Months ${days} Days<br><br>
-Born on: ${dob}<br>
-Age on: ${ageOn}<br><br>
-${eligibility}
-`;
+  result.innerHTML=`<b>Exact Age:</b> ${y} Years ${m} Months ${d} Days<br><br>Born on: ${dob}<br>Age on: ${ageOn}<br><br>${eligibility}`;
 }
 </script>
 
-
-</div>   <!-- THIS closes your .main container -->
+</div>
 
 <footer class="site-footer">
   <div class="footer-wrap">
-
     <div class="footer-links">
-      <a href="#">About Us</a>
-      <span>|</span>
-      <a href="#">Sitemap</a>
-      <span>|</span>
-      <a href="#">Terms of Use</a>
-      <span>|</span>
+      <a href="#">About Us</a> |
+      <a href="#">Sitemap</a> |
+      <a href="#">Terms of Use</a> |
       <a href="#">Privacy Policy</a>
     </div>
-
-    <div class="footer-copy">
-      © 2026 Smart Age Calculator
-    </div>
-
+    <div class="footer-copy">© 2026 Smart Age Calculator</div>
   </div>
 </footer>
 
-
-
 </body>
 </html>
-
