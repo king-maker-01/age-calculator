@@ -23,12 +23,24 @@
 
   <!-- Favicon -->
   <link rel="icon" href="Calculator_Logo.jpg" type="image/jpeg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
+:root{
+  --border-color: #e4ecf7;
+  --card-border: rgba(255,255,255,0.3);
+}
+
+.dark{
+  --border-color: #2c3e50;
+  --card-border: rgba(255,255,255,0.08);
+}
+
 *{
   box-sizing:border-box;
-  font-family:Segoe UI,Arial,sans-serif;
+  font-family:'Inter', 'Segoe UI', Arial, sans-serif;
+  scroll-behavior:smooth;
 }
 
 body{
@@ -44,14 +56,23 @@ body{
   );
 }
 
+/* ===== HEADER ===== */
 .main-header{
   background:linear-gradient(90deg,#083a5c,#0f5f8f);
   color:white;
-  padding:16px 60px;
+  padding:14px 30px;
   display:flex;
   align-items:center;
-  gap:40px;
-  box-shadow:0 4px 12px rgba(0,0,0,.2);
+  justify-content:space-between;
+  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+.header-center{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:30px;
+  flex:1;
 }
 
 .logo{
@@ -60,13 +81,30 @@ body{
   letter-spacing:.5px;
 }
 
+/* NAV ANIMATION */
 nav a{
   color:white;
   margin:0 16px;
   text-decoration:none;
   font-weight:600;
   font-size:15px;
-  transition:.2s;
+  position:relative;
+  transition:.3s;
+}
+
+nav a::after{
+  content:"";
+  position:absolute;
+  width:0%;
+  height:2px;
+  left:0;
+  bottom:-4px;
+  background:#9be02f;
+  transition:.3s;
+}
+
+nav a:hover::after{
+  width:100%;
 }
 
 nav a:hover{
@@ -75,10 +113,9 @@ nav a:hover{
 
 nav a.active{
   color:#9be02f;
-  border-bottom:2px solid #9be02f;
-  padding-bottom:4px;
 }
 
+/* ===== BREADCRUMB ===== */
 .breadcrumb{
   padding:10px 40px;
   background:#f5f8ff;
@@ -86,6 +123,7 @@ nav a.active{
   font-size:14px;
 }
 
+/* ===== MAIN LAYOUT ===== */
 .main{
   max-width:1100px;
   margin:40px auto;
@@ -94,12 +132,21 @@ nav a.active{
   padding:0 20px;
 }
 
+/* ===== CARD (GLASS EFFECT) ===== */
 .card{
-  background:white;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(15px);
   padding:30px;
-  border-radius:14px;
-  box-shadow:0 12px 28px rgba(0,0,0,.12);
+  border:1px solid var(--card-border);
+  border-radius:18px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.15);
   width:380px;
+  transition: all .3s ease;
+}
+
+.card:hover{
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:0 25px 50px rgba(0,0,0,0.25);
 }
 
 .card h2{
@@ -109,6 +156,7 @@ nav a.active{
   color:#102a43;
 }
 
+/* ===== FORM ===== */
 label{
   font-weight:600;
   margin-top:16px;
@@ -116,39 +164,62 @@ label{
   color:#334;
 }
 
+/* MODERN INPUT */
 input{
   width:100%;
-  padding:11px;
+  padding:12px;
   margin-top:6px;
-  border-radius:6px;
+  border-radius:8px;
   border:1px solid #ccd6e6;
   font-size:15px;
+  transition:.25s;
 }
 
+input:focus{
+  outline:none;
+  border-color:#4facfe;
+  box-shadow:0 0 0 3px rgba(79,172,254,0.2);
+}
+
+/* ===== BUTTON (MODERN) ===== */
 button{
   margin-top:20px;
   width:100%;
-  padding:13px;
-  background:linear-gradient(90deg,#5ea51d,#3f7f11);
+  padding:14px;
+  background:linear-gradient(90deg,#6cc51d,#3f7f11);
   color:white;
   border:none;
-  border-radius:8px;
+  border-radius:10px;
   font-size:17px;
   font-weight:bold;
   cursor:pointer;
+  transition: all .3s ease;
+  box-shadow:0 6px 15px rgba(0,0,0,0.15);
 }
 
+button:hover{
+  transform: translateY(-2px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.25);
+}
+
+button:active{
+  transform: scale(0.97);
+}
+
+/* RESULT BOX */
 #result{
   margin-top:18px;
   background:#f2f7ff;
   padding:14px;
-  border-radius:8px;
+  border-radius:10px;
   border:1px solid #d7e4ff;
   font-weight:600;
   line-height:1.7;
   color:#102a43;
+  animation: fadeIn .4s ease;
 }
 
+/* HINT */
 .hint{
   font-size:13px;
   color:#666;
@@ -156,29 +227,34 @@ button{
   display:block;
 }
 
+/* ===== CONTENT & SIDEBAR ===== */
 .content,.sidebar{
-  background:white;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
   padding:22px;
-  border-radius:14px;
+  border-radius:16px;
   box-shadow:0 12px 28px rgba(0,0,0,.1);
+  transition:.3s;
 }
 
 .content{flex:1;}
 .sidebar{width:220px;}
 
-@media(max-width:900px){
-  .main{flex-direction:column;}
-  .card,.sidebar{width:100%;}
+.content:hover,
+.sidebar:hover{
+  transform: translateY(-5px);
 }
 
+/* SIDEBAR HEADER */
 .sidebar h4{
   background:#2f5f8f;
   color:white;
   padding:10px 12px;
-  border-radius:6px;
+  border-radius:8px;
   margin:-22px -22px 14px -22px;
 }
 
+/* LINKS */
 .tool-links{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -190,10 +266,12 @@ button{
   text-decoration:none;
   font-weight:600;
   font-size:14px;
+  transition:.2s;
 }
 
 .tool-links a:hover{
-  text-decoration:underline;
+  color:#083a5c;
+  transform:translateX(3px);
 }
 
 .tool-links .more{
@@ -203,6 +281,7 @@ button{
   color:#083a5c;
 }
 
+/* ===== FOOTER ===== */
 .site-footer{
   width:100%;
   background:#e6e6e6;
@@ -228,21 +307,95 @@ button{
   font-weight:600;
 }
 
+/* ===== DARK MODE ===== */
+#darkToggle{
+  background:#ffffff20;
+  border:none;
+  color:white;
+  font-size:16px;
+  padding:6px 10px;
+  border-radius:6px;
+  cursor:pointer;
+  width:auto;
+  margin:0;
+}
+
+.dark{
+  background:#121212;
+  color:#eee;
+}
+
+.dark .card,
+.dark .content,
+.dark .sidebar{
+  background:#1e1e1e;
+  color:#eee;
+}
+
+.dark input{
+  background:#2a2a2a;
+  color:white;
+  border:1px solid #555;
+}
+
+.dark #result{
+  background:#2a2a2a;
+  color:white;
+}
+
+.dark .breadcrumb{
+  background:#1a1a1a;
+}
+
+.dark .site-footer{
+  background:#1a1a1a;
+  color:#ccc;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform: translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .main{flex-direction:column;}
+  .card,.sidebar{width:100%;}
+}
 </style>
+
 </head>
 
 <body>
 
+
+
+
 <header class="main-header">
+
   <div class="logo">Smart Age Calculator</div>
-  <nav>
-    <a href="#" class="active">Age Calculator</a>
-    <a href="#">Eligibility Checker</a>
-    <a href="#">Entrance Exams</a>
-    <a href="#">Govt Jobs</a>
-    <a href="#">Calculator Hub</a>
-  </nav>
+
+  <div class="header-center">
+    <nav>
+      <a href="#" class="active">Age Calculator</a>
+      <a href="#">Eligibility Checker</a>
+      <a href="#">Entrance Exams</a>
+      <a href="#">Govt Jobs</a>
+      <a href="#">Calculator Hub</a>
+    </nav>
+  </div>
+
+  <button id="darkToggle">🌙</button>
+
 </header>
+
 
 <div class="breadcrumb">home / other / age calculator</div>
 
@@ -291,11 +444,37 @@ button{
 <button onclick="calculateAge()">Calculate Age</button>
 <div id="result">Enter dates to calculate age</div>
 </div>
-
 <div class="content">
-<h3>About This Age Calculator</h3>
-<p>The Smart Age Calculator helps calculate exact age and check exam or job eligibility based on DOB.</p>
+  <h3>About This Age Calculator</h3>
+
+  <p>
+    The Smart Age Calculator is a free online tool designed to calculate your exact age 
+    in years, months, and days using your date of birth. It also helps students and 
+    job seekers check eligibility for various exams and government jobs instantly.
+  </p>
+
+  <h4>✔ Features</h4>
+  <ul>
+    <li>Accurate age calculation</li>
+    <li>Check eligibility for exams</li>
+    <li>Supports multiple government exams</li>
+    <li>Instant result with detailed breakdown</li>
+  </ul>
+
+  <h4>✔ Useful For</h4>
+  <ul>
+    <li>Students preparing for exams</li>
+    <li>Government job aspirants</li>
+    <li>Form filling and verification</li>
+  </ul>
+
+  <h4>✔ Why Use This Tool?</h4>
+  <p>
+    Manual calculation can be confusing and error-prone. This tool provides 
+    fast and accurate results in one click.
+  </p>
 </div>
+
 
 <div class="sidebar">
 <h4>Other Calculators</h4>
@@ -351,40 +530,177 @@ const limits={
 };
 
 function calculateAge(){
-  const dob=document.getElementById("dob").value;
-  const ageOn=document.getElementById("ageOn").value;
-  const exam=document.getElementById("exam").value;
-  const result=document.getElementById("result");
+  const dob = document.getElementById("dob").value;
+  const ageOn = document.getElementById("ageOn").value;
+  const exam = document.getElementById("exam").value;
+  const result = document.getElementById("result");
 
-  if(!dob||!ageOn){result.innerHTML="⚠ Please select both dates";return;}
+  // Validation
+  if(!dob || !ageOn){
+    result.innerHTML = "⚠ Please select both dates";
+    return;
+  }
 
-  const b=new Date(dob),t=new Date(ageOn);
-  let y=t.getFullYear()-b.getFullYear(),
-      m=t.getMonth()-b.getMonth(),
-      d=t.getDate()-b.getDate();
+  const b = new Date(dob);
+  const t = new Date(ageOn);
 
-  if(d<0){m--;d+=new Date(t.getFullYear(),t.getMonth(),0).getDate();}
-  if(m<0){y--;m+=12;}
+  if(b > t){
+    result.innerHTML = "❌ Date of Birth cannot be in future";
+    return;
+  }
 
-  let eligibility="";
+  // Age calculation
+  let y = t.getFullYear() - b.getFullYear();
+  let m = t.getMonth() - b.getMonth();
+  let d = t.getDate() - b.getDate();
+
+  if(d < 0){
+    m--;
+    d += new Date(t.getFullYear(), t.getMonth(), 0).getDate();
+  }
+
+  if(m < 0){
+    y--;
+    m += 12;
+  }
+
+  // Extra calculations
+  const diff = t - b;
+
+  const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const weeks = Math.floor(totalDays / 7);
+  const hours = Math.floor(diff / (1000 * 60 * 60));
+  const minutes = Math.floor(diff / (1000 * 60));
+  const seconds = Math.floor(diff / 1000);
+
+  // Next Birthday
+  let nextBirthday = new Date(t.getFullYear(), b.getMonth(), b.getDate());
+
+  if(nextBirthday < t){
+    nextBirthday.setFullYear(t.getFullYear() + 1);
+  }
+
+  const daysLeft = Math.ceil((nextBirthday - t) / (1000*60*60*24));
+
+  // Age Category
+  let category = "";
+  if(y < 13) category = "Child 👶";
+  else if(y < 20) category = "Teenager 🧑";
+  else if(y < 40) category = "Young Adult 💪";
+  else if(y < 60) category = "Adult 🧔";
+  else category = "Senior 👴";
+
+  // Zodiac Sign
+  const zodiac = [
+    ["Capricorn",19],["Aquarius",18],["Pisces",20],["Aries",19],
+    ["Taurus",20],["Gemini",20],["Cancer",22],["Leo",22],
+    ["Virgo",22],["Libra",22],["Scorpio",21],["Sagittarius",21],["Capricorn",31]
+  ];
+
+  let z = zodiac[b.getMonth()];
+  let sign = (b.getDate() > z[1]) ? zodiac[b.getMonth()+1][0] : z[0];
+
+  // Eligibility (your original logic)
+  let eligibility = "";
+
   if(limits[exam]){
-    const[min,max]=limits[exam];
-    const minDOB=new Date(t);minDOB.setFullYear(t.getFullYear()-max);
-    const maxDOB=new Date(t);maxDOB.setFullYear(t.getFullYear()-min);
+    const [min,max] = limits[exam];
 
-    if(b>=minDOB&&b<=maxDOB) eligibility=`✅ Eligible for ${exam} (Age limit: ${min}-${max})`;
-    else if(b>maxDOB){
-      const e=new Date(b);e.setFullYear(b.getFullYear()+min);
-      eligibility=`⏳ Not Eligible Yet<br>Eligible on: <b>${e.toLocaleDateString("en-GB").replace(/\//g,"-")}</b>`;
-    }else{
-      const l=new Date(b);l.setFullYear(b.getFullYear()+max);
-      eligibility=`❌ Over Age<br>Last eligible date: <b>${l.toLocaleDateString("en-GB").replace(/\//g,"-")}</b>`;
+    const minDOB = new Date(t);
+    minDOB.setFullYear(t.getFullYear() - max);
+
+    const maxDOB = new Date(t);
+    maxDOB.setFullYear(t.getFullYear() - min);
+
+    if(b >= minDOB && b <= maxDOB){
+      eligibility = `✅ Eligible for ${exam} (Age limit: ${min}-${max})`;
+    }
+    else if(b > maxDOB){
+      const e = new Date(b);
+      e.setFullYear(b.getFullYear() + min);
+      eligibility = `⏳ Not Eligible Yet<br>Eligible on: <b>${e.toLocaleDateString("en-GB").replace(/\//g,"-")}</b>`;
+    }
+    else{
+      const l = new Date(b);
+      l.setFullYear(b.getFullYear() + max);
+      eligibility = `❌ Over Age<br>Last eligible date: <b>${l.toLocaleDateString("en-GB").replace(/\//g,"-")}</b>`;
     }
   }
 
-  result.innerHTML=`<b>Exact Age:</b> ${y} Years ${m} Months ${d} Days<br><br>Born on: ${dob}<br>Age on: ${ageOn}<br><br>${eligibility}`;
+  // Final Output
+result.innerHTML = `
+  <b>🎂 Exact Age:</b> ${y} Years ${m} Months ${d} Days<br><br>
+
+  ${eligibility ? `<b>⏳ Eligibility:</b><br>${eligibility}<br><br>` : ""}
+
+  <b>🎉 Next Birthday:</b> ${daysLeft} Days left<br>
+  <b>🧠 Category:</b> ${category}<br>
+  <b>🔮 Zodiac:</b> ${sign}<br><br>
+
+  <b>📅 Born on:</b> ${dob}<br>
+  <b>📅 Age on:</b> ${ageOn}<br><br>
+
+  <b>📊 Total Life:</b><br>
+  ${totalDays} Days | ${weeks} Weeks<br>
+  ${hours} Hours | ${minutes} Minutes | ${seconds} Seconds
+`;
+
+ 
+  // Highlight animation
+  result.style.boxShadow = "0 0 15px #4caf50";
+  setTimeout(()=> result.style.boxShadow = "none", 800);
 }
+
+const toggle = document.getElementById("darkToggle");
+
+// Load saved mode
+if (localStorage.getItem("mode") === "dark") {
+  document.body.classList.add("dark");
+  toggle.textContent = "☀️";
+}
+
+toggle.onclick = function () {
+  document.body.classList.toggle("dark");
+
+  if (document.body.classList.contains("dark")) {
+    toggle.textContent = "☀️";
+    localStorage.setItem("mode", "dark");
+  } else {
+    toggle.textContent = "🌙";
+    localStorage.setItem("mode", "light");
+  }
+};
+
 </script>
+<script>
+const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+function fillDate(idMonth,idDay,idYear){
+  const m = document.getElementById(idMonth);
+  const d = document.getElementById(idDay);
+  const y = document.getElementById(idYear);
+
+  // Months
+  months.forEach((month,i)=>{
+    m.innerHTML += `<option value="${i}">${month}</option>`;
+  });
+
+  // Days
+  for(let i=1;i<=31;i++){
+    d.innerHTML += `<option value="${i}">${i}</option>`;
+  }
+
+  // Years
+  const currentYear = new Date().getFullYear();
+  for(let i=currentYear;i>=1950;i--){
+    y.innerHTML += `<option value="${i}">${i}</option>`;
+  }
+}
+
+fillDate("dobMonth","dobDay","dobYear");
+fillDate("ageMonth","ageDay","ageYear");
+</script>
+
 
 </div>
 
